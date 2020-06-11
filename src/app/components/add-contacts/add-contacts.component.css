@@ -24,6 +24,10 @@ button {
   margin-top: 5px;
 }
 
+.error {
+  border: 1px solid var(--error);
+}
+
 .alert {
   color: var(--error);
 }
@@ -52,6 +56,18 @@ button {
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr;
   margin-top: 5px;
+}
+
+/* .ng-untouched.ng-pristine.ng-invalid {
+  border-left: 1px solid #aaa;
+} */
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-dirty.ng-touched.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
 }
 
 @media (max-width: 700px) {
