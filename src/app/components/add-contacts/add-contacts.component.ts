@@ -11,13 +11,15 @@ import { ICity } from 'src/app/models/cities';
 export class AddContactsComponent implements OnInit {
   contactForm: FormGroup;
 
-  cities: Array<ICity> = [];
+  cities: ICity[] = [];
 
   isValid = false;
+
   emptyFields = false;
   invalidEmail = false;
   invalidPhone = false;
   invalidZipCode = false;
+  invalidChars = false;
 
   constructor() {
     this.cities = cities;
@@ -29,8 +31,14 @@ export class AddContactsComponent implements OnInit {
 
   initForm() {
     this.contactForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[A-Za-z0-9]+$'),
+      ]),
+      lastName: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[A-Za-z0-9]+$'),
+      ]),
       company: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [
@@ -48,6 +56,12 @@ export class AddContactsComponent implements OnInit {
     });
   }
 
+  get firstName() {
+    return this.contactForm.get('firstName');
+  }
+  get lastName() {
+    return this.contactForm.get('lastName');
+  }
   get email() {
     return this.contactForm.get('email');
   }
@@ -59,11 +73,10 @@ export class AddContactsComponent implements OnInit {
   }
 
   formatPhoneNumber() {
-    const demo = '2487335384';
-    const a = this.phone.value.substring(0, 3);
-    const b = this.phone.value.substring(3, 6);
-    const c = this.phone.value.substring(6);
-    const phone = `+1 (${a})-${b}-${c}`;
+    const p1 = this.phone.value.substring(0, 3);
+    const p2 = this.phone.value.substring(3, 6);
+    const p3 = this.phone.value.substring(6);
+    const phone = `+1 (${p1})-${p2}-${p3}`;
     Object.assign(this.contactForm.value, { phone });
   }
 
@@ -86,6 +99,7 @@ export class AddContactsComponent implements OnInit {
       this.invalidEmail = false;
       this.invalidPhone = false;
       this.invalidZipCode = false;
+      this.invalidChars = false;
 
       this.formatPhoneNumber();
       console.log(this.contactForm.value);
@@ -95,11 +109,16 @@ export class AddContactsComponent implements OnInit {
     }
 
     this.isValid = false;
+
     this.invalidEmail = this.email.errors?.email || false;
     this.invalidPhone =
       this.phone.errors?.minlength || this.phone.errors?.pattern ? true : false;
     this.invalidZipCode =
       this.zipCode.errors?.minlength || this.zipCode.errors?.pattern
+        ? true
+        : false;
+    this.invalidChars =
+      this.firstName.errors?.pattern || this.lastName.errors?.pattern
         ? true
         : false;
   }
