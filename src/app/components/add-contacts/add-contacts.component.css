@@ -1,0 +1,66 @@
+header h3 {
+  background: var(--dark);
+  color: var(--light);
+  width: 100%;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+input,
+select,
+button {
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid #aaa;
+}
+
+.contact-form {
+  margin: 1rem 0.2rem;
+}
+
+.group {
+  margin-top: 5px;
+}
+
+.nameGroup {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 5px;
+}
+
+.companyGroup {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 5px;
+}
+
+.phoneGroup {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  margin-top: 5px;
+}
+
+.addressGroup {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 5px;
+}
+
+@media (max-width: 700px) {
+  .nameGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .companyGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .addressGroup {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,9 +1,9 @@
-header h1 {
+header h3 {
   background: var(--dark);
   color: var(--light);
   width: 100%;
   padding: 1rem;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .contacts {
@@ -16,7 +16,7 @@ header h1 {
 .contact {
   background: var(--primary);
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   padding: 1.5rem 1.5rem;
   box-shadow: var(--shadow);
 }
@@ -26,8 +26,29 @@ header h1 {
   margin: 10px auto;
 }
 
+/* Media Queries */
+@media (max-width: 1000px) {
+  .contact {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .contact {
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 500px) {
   .contact {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .contacts {
+    margin-left: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
