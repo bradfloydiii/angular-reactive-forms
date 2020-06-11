@@ -1,26 +1,29 @@
 <header>
   <h3>Add a contact</h3>
 </header>
-<section class="contact-form">
-  <p>Form status: {{ contactForm.status }}</p>
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
-    <div *ngIf="isValid" class="message">
+<section class="messages">
+  <div *ngIf="isValid" class="message">
+    <h3>
       Contact successfully added.
-    </div>
-    <div *ngIf="emptyFields" class="alert">
-      All fields are <strong>required</strong>.
-    </div>
-    <div *ngIf="invalidEmail" class="alert">
-      Please enter a <strong>valid email</strong>.
-    </div>
-    <div *ngIf="invalidPhone" class="alert">
-      Please enter a <strong>valid phone number</strong>.
-    </div>
-    <div *ngIf="invalidZipCode" class="alert">
-      Please enter a <strong>valid zip code</strong>.
-    </div>
+    </h3>
+  </div>
+  <div *ngIf="emptyFields" class="alert">
+    All fields are <strong>required</strong>.
+  </div>
+  <div *ngIf="invalidEmail" class="alert">
+    Please enter a <strong>valid email</strong>.
+  </div>
+  <div *ngIf="invalidPhone" class="alert">
+    Please enter a <strong>valid phone number</strong>.
+  </div>
+  <div *ngIf="invalidZipCode" class="alert">
+    Please enter a <strong>valid zip code</strong>.
+  </div>
+</section>
 
+<section class="contact-form">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <div class="col-2">
       <input
         id="firstName"
@@ -48,7 +51,7 @@
 
       <input
         type="email"
-        placeHolder="Email*"
+        placeHolder="Email* (john@example.com)"
         formControlName="email"
         required
       />
@@ -56,7 +59,7 @@
     <div class="col-1">
       <input
         type="text"
-        placeholder="Phone*"
+        placeholder="Phone* (10-digit)"
         formControlName="phone"
         minlength="10"
         maxlength="10"
@@ -66,19 +69,20 @@
     <div class="col-3">
       <input type="text" placeholder="City*" formControlName="city" required />
       <select formControlName="state" required>
-        <option value="#" [selected]="true">Select a state</option>
-        <option value="alabama">Alabama</option>
-        <option value="michigan">Michigan</option>
+        <option value="" [selected]="true">Select a state</option>
+        <option *ngFor="let city of cities" [ngValue]="city.abbreviation">{{
+          city.name
+        }}</option>
       </select>
       <input
         type="text"
-        placeholder="Zip*"
+        placeholder="Zip* (5-digit)"
         formControlName="zipCode"
         maxlength="5"
         required
       />
     </div>
-    <div class="group">
+    <div class="gap">
       <button type="submit">Submit</button>
     </div>
   </form>
