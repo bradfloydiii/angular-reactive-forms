@@ -102,7 +102,7 @@ export class AddContactsComponent implements OnInit {
       this.invalidChars = false;
 
       this.formatPhoneNumber();
-      console.log(this.contactForm.value);
+      console.log(`Serialized data`, this.contactForm.value);
 
       this.contactForm.reset();
       return;
