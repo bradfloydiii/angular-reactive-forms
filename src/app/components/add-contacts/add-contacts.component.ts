@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-contacts',
@@ -9,6 +8,8 @@ import { of } from 'rxjs';
 })
 export class AddContactsComponent implements OnInit {
   contactForm: FormGroup;
+
+  isValid = false;
   emptyFields = false;
   invalidEmail = false;
   invalidPhone = false;
@@ -28,14 +29,13 @@ export class AddContactsComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
+        Validators.minLength(10),
       ]),
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
       zipCode: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(5),
       ]),
     });
   }
@@ -77,9 +77,21 @@ export class AddContactsComponent implements OnInit {
 
   onSubmit() {
     this.emptyFields = this.checkEmptyFields();
-    // this.invalidEmail = this.email.errors.email ? this.email.errors.email : false;
-    // this.invalidPhone = this.phone.errors.minLength ? this.phone.errors.minLength : false;
-    // this.invalidZipCode = this.zipCode.errors.minLength ? this.zipCode.errors.minLength : false;
-    console.log(this.checkEmptyFields());
+
+    if (this.contactForm.valid && !this.emptyFields) {
+      this.isValid = true;
+
+      this.invalidEmail = false;
+      this.invalidPhone = false;
+      this.invalidZipCode = false;
+
+      console.log(this.contactForm.value);
+      return;
+    }
+
+    this.isValid = false;
+    this.invalidEmail = this.email.errors?.email || false;
+    this.invalidPhone = this.phone.errors?.minlength ? true : false;
+    this.invalidZipCode = this.zipCode.errors?.minlength ? true : false;
   }
 }

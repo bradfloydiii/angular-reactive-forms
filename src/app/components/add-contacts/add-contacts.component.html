@@ -5,16 +5,19 @@
   <p>Form status: {{ contactForm.status }}</p>
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
+    <div *ngIf="isValid" class="message">
+      Contact successfully added.
+    </div>
     <div *ngIf="emptyFields" class="alert">
       All fields are <strong>required</strong>.
     </div>
-    <div *ngIf="invalidEmail"class="alert">
+    <div *ngIf="invalidEmail" class="alert">
       Please enter a <strong>valid email</strong>.
     </div>
-    <div *ngIf="invalidPhone"class="alert">
+    <div *ngIf="invalidPhone" class="alert">
       Please enter a <strong>valid phone number</strong>.
     </div>
-    <div *ngIf="invalidZipCode"class="alert">
+    <div *ngIf="invalidZipCode" class="alert">
       Please enter a <strong>valid zip code</strong>.
     </div>
 
