@@ -4,124 +4,19 @@
   </h3>
 </header>
 <section class="contacts">
-  <div class="contact">
+  <div *ngFor="let contact of contacts" class="contact">
     <ul>
       <li>
-        <h3>{{ name }}</h3>
+        <h3>{{ contact.firstName + ' ' + contact.lastName }}</h3>
       </li>
       <li>
         <h4>
-          {{ company }}
+          {{ contact.company }}
         </h4>
       </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
-    </ul>
-  </div>
-  <div class="contact">
-    <ul>
-      <li>
-        <h3>{{ name }}</h3>
-      </li>
-      <li>
-        <h4>
-          {{ company }}
-        </h4>
-      </li>
-      <li>{{ email }}</li>
-      <li>{{ phone }}</li>
-      <li>{{ address }}</li>
+      <li>{{ contact.email }}</li>
+      <li>{{ contact.phone }}</li>
+      <li>{{ contact.address }}</li>
     </ul>
   </div>
 </section>
