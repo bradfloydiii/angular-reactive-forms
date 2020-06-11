@@ -7,7 +7,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./add-contacts.component.css'],
 })
 export class AddContactsComponent implements OnInit {
-  contactFormGroup: FormGroup;
+  contactForm: FormGroup;
+  emptyFields = false;
+  invalidEmail = false;
 
   constructor() {}
 
@@ -16,15 +18,14 @@ export class AddContactsComponent implements OnInit {
   }
 
   initForm() {
-    this.contactFormGroup = new FormGroup({
+    this.contactForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       company: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
-        Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}'),
+        Validators.maxLength(10)
       ]),
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
@@ -36,12 +37,42 @@ export class AddContactsComponent implements OnInit {
     });
   }
 
+  get firstName() {
+    return this.contactForm.get('firstName');
+  }
+  get lastName() {
+    return this.contactForm.get('lastName');
+  }
+  get company() {
+    return this.contactForm.get('company');
+  }
+  get email() {
+    return this.contactForm.get('email');
+  }
+  get phone() {
+    return this.contactForm.get('phone');
+  }
+  get city() {
+    return this.contactForm.get('city');
+  }
+  get state() {
+    return this.contactForm.get('state');
+  }
+  get zipCode() {
+    return this.contactForm.get('zipCode');
+  }
+
   onSubmit() {
-    console.warn(this.contactFormGroup.value);
-    if (this.contactFormGroup.valid) {
-      console.log('VALID', this.contactFormGroup.value);
-    } else {
-      console.log('INVALID', this.contactFormGroup.value);
-    }
+    Object.values(this.contactForm.value).map((value) => {
+      if (value === '' || value === '#') {
+        this.emptyFields = true;
+        return;
+      }
+      this.emptyFields = false;
+    });
+
+    this.invalidEmail = this.email.errors?.email || false;
+    console.log(this.contactForm.value);
+
   }
 }

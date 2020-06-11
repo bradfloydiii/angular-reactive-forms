@@ -2,15 +2,25 @@
   <h3>Add a contact</h3>
 </header>
 <section class="contact-form">
-  <p>Form status: {{ contactFormGroup.status }}</p>
-  <form class="foo-form" [formGroup]="contactFormGroup" (ngSubmit)="onSubmit()">
+  <p>Form status: {{ contactForm.status }}</p>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="emptyFields" class="alert">
+      All fields are <strong>required</strong>.
+    </div>
+    <div *ngIf="invalidEmail"class="alert">
+      Please enter a <strong>valid email</strong>.
+    </div>
+
     <div class="col-2">
       <input
+        id="firstName"
         type="text"
         placeholder="First Name*"
         formControlName="firstName"
         required
       />
+
       <input
         type="text"
         placeholder="Last Name*"
@@ -18,6 +28,7 @@
         required
       />
     </div>
+
     <div class="col-2">
       <input
         type="text"
@@ -25,6 +36,7 @@
         formControlName="company"
         required
       />
+
       <input
         type="email"
         placeHolder="Email*"
@@ -35,14 +47,14 @@
     <div class="col-1">
       <input
         type="text"
-        id="text"
-        name="phone"
         placeholder="Phone*"
         formControlName="phone"
+        minlength="10"
+        maxlength="10"
         required
       />
     </div>
-    <div class="col-2">
+    <div class="col-3">
       <input type="text" placeholder="City*" formControlName="city" required />
       <select formControlName="state" required>
         <option value="#" [selected]="true">Select a state</option>
@@ -53,6 +65,7 @@
         type="text"
         placeholder="Zip*"
         formControlName="zipCode"
+        maxlength="5"
         required
       />
     </div>
