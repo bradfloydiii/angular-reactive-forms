@@ -4,15 +4,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-contacts',
   templateUrl: './add-contacts.component.html',
-  styleUrls: ['./add-contacts.component.css']
+  styleUrls: ['./add-contacts.component.css'],
 })
 export class AddContactsComponent implements OnInit {
-
   formGroup: FormGroup;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   initForm() {
@@ -27,4 +27,12 @@ export class AddContactsComponent implements OnInit {
     });
   }
 
+  validateForm() {
+    if (this.formGroup.valid) {
+      console.log('VALID', this.formGroup.value);
+    } else {
+      console.log('INVALID', this.formGroup.value);
+
+    }
+  }
 }
