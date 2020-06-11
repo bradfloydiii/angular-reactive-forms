@@ -3,6 +3,7 @@
   --primary: #ddd;
   --dark: #333;
   --light: #fff;
+  --error: #f00;
   --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
 

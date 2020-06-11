@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./add-contacts.component.css'],
 })
 export class AddContactsComponent implements OnInit {
-  formGroup: FormGroup;
+  contactFormGroup: FormGroup;
 
   constructor() {}
 
@@ -16,23 +16,32 @@ export class AddContactsComponent implements OnInit {
   }
 
   initForm() {
-    this.formGroup = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      company: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      zipCode: new FormControl('', [Validators.required]),
+    this.contactFormGroup = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      company: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{4}'),
+      ]),
+      city: new FormControl('', Validators.required),
+      state: new FormControl('', Validators.required),
+      zipCode: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5),
+      ]),
     });
   }
 
-  validateForm() {
-    if (this.formGroup.valid) {
-      console.log('VALID', this.formGroup.value);
+  onSubmit() {
+    console.warn(this.contactFormGroup.value);
+    if (this.contactFormGroup.valid) {
+      console.log('VALID', this.contactFormGroup.value);
     } else {
-      console.log('INVALID', this.formGroup.value);
-
+      console.log('INVALID', this.contactFormGroup.value);
     }
   }
 }

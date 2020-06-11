@@ -2,31 +2,59 @@
   <h3>Add a contact</h3>
 </header>
 <section class="contact-form">
-  <form class="foo-form" [formGroup]="formGroup" (ngSubmit)="validateForm()">
-    <div class="nameGroup">
-      <input type="text" placeholder="First Name" />
-      <input type="text" placeholder="Last Name" />
-    </div>
-    <div class="companyGroup">
-      <input type="text" placeholder="Company" formControlName="company" />
-      <input type="email" placeHolder="Email" formControlName="email" />
-    </div>
-    <div class="phoneGroup">
+  <p>Form status: {{ contactFormGroup.status }}</p>
+  <form class="foo-form" [formGroup]="contactFormGroup" (ngSubmit)="onSubmit()">
+    <div class="col-2">
       <input
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="Phone"
-        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        type="text"
+        placeholder="First Name*"
+        formControlName="firstName"
+        required
+      />
+      <input
+        type="text"
+        placeholder="Last Name*"
+        formControlName="lastName"
+        required
       />
     </div>
-    <div class="addressGroup">
-      <input type="text" placeholder="City" />
-      <select placeholder="Select a city">
-        <option label="Select a City" value="#"></option>
-        <option label="Alabama" value="#"></option>
+    <div class="col-2">
+      <input
+        type="text"
+        placeholder="Company*"
+        formControlName="company"
+        required
+      />
+      <input
+        type="email"
+        placeHolder="Email*"
+        formControlName="email"
+        required
+      />
+    </div>
+    <div class="col-1">
+      <input
+        type="text"
+        id="text"
+        name="phone"
+        placeholder="Phone*"
+        formControlName="phone"
+        required
+      />
+    </div>
+    <div class="col-2">
+      <input type="text" placeholder="City*" formControlName="city" required />
+      <select formControlName="state" required>
+        <option value="#" [selected]="true">Select a state</option>
+        <option value="alabama">Alabama</option>
+        <option value="michigan">Michigan</option>
       </select>
-      <input type="text" placeholder="Zip" />
+      <input
+        type="text"
+        placeholder="Zip*"
+        formControlName="zipCode"
+        required
+      />
     </div>
     <div class="group">
       <button type="submit">Submit</button>

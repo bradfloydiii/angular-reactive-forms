@@ -23,44 +23,29 @@ button {
   margin-top: 5px;
 }
 
-.nameGroup {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 5px;
+.error {
+  color: var(--error);
 }
 
-.companyGroup {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 5px;
-}
-
-.phoneGroup {
+.col-1 {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;
   margin-top: 5px;
 }
 
-.addressGroup {
+.col-2 {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   margin-top: 5px;
 }
 
 @media (max-width: 700px) {
-  .nameGroup {
+  .col-2 {
+    display: grid;
+    grid-gap: 10px;
     grid-template-columns: 1fr;
-  }
-
-  .companyGroup {
-    grid-template-columns: 1fr;
-  }
-
-  .addressGroup {
-    grid-template-columns: 1fr;
+    margin-top: 5px;
   }
 }
