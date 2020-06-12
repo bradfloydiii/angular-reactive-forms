@@ -1,5 +1,4 @@
 import { ContactsComponent } from './contacts.component';
-import { tick } from '@angular/core/testing';
 
 describe('ContactsComponent', () => {
   const contacts = [
