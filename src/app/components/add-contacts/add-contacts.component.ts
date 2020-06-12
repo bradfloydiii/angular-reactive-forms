@@ -62,11 +62,20 @@ export class AddContactsComponent implements OnInit {
   get lastName() {
     return this.contactForm.get('lastName');
   }
+  get company() {
+    return this.contactForm.get('company');
+  }
   get email() {
     return this.contactForm.get('email');
   }
   get phone() {
     return this.contactForm.get('phone');
+  }
+  get city() {
+    return this.contactForm.get('city');
+  }
+  get state() {
+    return this.contactForm.get('state');
   }
   get zipCode() {
     return this.contactForm.get('zipCode');

@@ -1,25 +1,40 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContactsComponent } from './contacts.component';
+import { tick } from '@angular/core/testing';
 
 describe('ContactsComponent', () => {
-  let component: ContactsComponent;
-  let fixture: ComponentFixture<ContactsComponent>;
+  const contacts = [
+    {
+      _id: '5de91c00d6b4d04e96ef44da',
+      index: 1,
+      firstName: 'Mcmahon',
+      lastName: 'Fulton',
+      company: 'ILLUMITY',
+      email: 'mcmahonfulton@illumity.com',
+      phone: '+1 (814) 489-3373',
+      address: '676 Bainbridge Street, Abrams, Mississippi, 2652',
+    },
+  ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ContactsComponent ]
-    })
-    .compileComponents();
-  }));
+  let component: ContactsComponent;
+  const mockContactService = jasmine.createSpyObj('ContactService', {
+    http: {},
+    getContacts: {
+      subscribe: () => {
+        return contacts;
+      },
+    },
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContactsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new ContactsComponent(mockContactService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call the contactService onLoad of component', () => {
+    component.ngOnInit();
+    expect(mockContactService.getContacts).toHaveBeenCalled();
   });
 });
