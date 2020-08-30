@@ -1,5 +1,3 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddContactsComponent } from './add-contacts.component';
 
 describe('AddContactsComponent', () => {
@@ -46,7 +44,7 @@ describe('AddContactsComponent', () => {
   });
 
   it('should display "invalid email" error on bad email entry', () => {
-    component.emptyFields = false;
+    component.invalidEmail = false;
     component.ngOnInit();
 
     component.contactForm.setValue({
@@ -67,7 +65,7 @@ describe('AddContactsComponent', () => {
   });
 
   it('should display "invalid phone" error on bad phone entry', () => {
-    component.emptyFields = false;
+    component.invalidPhone = false;
     component.ngOnInit();
 
     component.contactForm.setValue({
@@ -88,7 +86,7 @@ describe('AddContactsComponent', () => {
   });
 
   it('should display "invalid zip" error on bad zipCode entry', () => {
-    component.emptyFields = false;
+    component.invalidZipCode = false;
     component.ngOnInit();
 
     component.contactForm.setValue({
@@ -101,15 +99,15 @@ describe('AddContactsComponent', () => {
       phone: '1234567afads',
       city: 'Detroit',
       state: 'MI',
-      zipCode: '48197'
+      zipCode: 'afdsf'
     });
 
     component.onSubmit();
-    expect(component.invalidPhone).toBeTruthy();
+    expect(component.invalidZipCode).toBeTruthy();
   });
 
   it('should display "invalid characters" error when special characters are entered in either firstname or lastname', () => {
-    component.emptyFields = false;
+    component.invalidChars = false;
     component.ngOnInit();
 
     component.contactForm.setValue({
@@ -130,7 +128,7 @@ describe('AddContactsComponent', () => {
   });
 
   it('should display "success" message if form is valid', () => {
-    component.emptyFields = false;
+    component.isValid = false;
     component.ngOnInit();
 
     component.contactForm.setValue({
