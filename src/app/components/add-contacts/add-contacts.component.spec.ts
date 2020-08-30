@@ -29,6 +29,8 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
+      mInitial: null,
       firstName: '',
       lastName: 'Floyd',
       company: 'Acme',
@@ -48,6 +50,8 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
+      mInitial: 'm',
       firstName: 'Brad',
       lastName: 'Floyd',
       company: 'Acme',
@@ -67,7 +71,9 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
       firstName: 'Brad',
+      mInitial: '',
       lastName: 'Floyd',
       company: 'Acme',
       email: 'john@example.com',
@@ -86,7 +92,9 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
       firstName: 'Brad',
+      mInitial: '',
       lastName: 'Floyd',
       company: 'Acme',
       email: 'john@example',
@@ -105,7 +113,9 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
       firstName: 'Brad#$#@',
+      mInitial: '',
       lastName: 'Floyd',
       company: 'Acme',
       email: 'john@example.com',
@@ -124,7 +134,9 @@ describe('AddContactsComponent', () => {
     component.ngOnInit();
 
     component.contactForm.setValue({
+      badgeId: '1234567890123456',
       firstName: 'Brad',
+      mInitial: 'A',
       lastName: 'Floyd',
       company: 'Acme',
       email: 'john@example',

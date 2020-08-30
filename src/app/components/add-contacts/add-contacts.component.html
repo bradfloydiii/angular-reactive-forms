@@ -28,13 +28,31 @@
 
 <section class="contact-form">
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-    <div class="col-2">
+    <div class="col-1">
+      <input
+        id="badgeId"
+        type="text"
+        minlength="16"
+        maxlength="16"
+        formControlName="badgeId"
+        placeholder="Badge Id"
+        required
+      />
+    </div>
+    <div class="col-3">
       <input
         id="firstName"
         type="text"
         placeholder="First Name*"
         formControlName="firstName"
         required
+      />
+
+      <input
+        id="mInitial"
+        type="text"
+        formControlName="mInitial"
+        placeholder="Middle Initial"
       />
 
       <input

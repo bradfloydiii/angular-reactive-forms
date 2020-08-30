@@ -31,10 +31,16 @@ export class AddContactsComponent implements OnInit {
 
   initForm() {
     this.contactForm = new FormGroup({
+      badgeId: new FormControl('', [
+        Validators.required,
+        Validators.minLength(16),
+        Validators.pattern('[0-9]{16}'),
+      ]),
       firstName: new FormControl('', [
         Validators.required,
         Validators.pattern('^[A-Za-z0-9]+$'),
       ]),
+      mInitial: new FormControl('', [Validators.pattern('^[A-Za-z0-9]+$')]),
       lastName: new FormControl('', [
         Validators.required,
         Validators.pattern('^[A-Za-z0-9]+$'),
@@ -58,6 +64,9 @@ export class AddContactsComponent implements OnInit {
 
   get firstName() {
     return this.contactForm.get('firstName');
+  }
+  get mInitial() {
+    return this.contactForm.get('mInitial');
   }
   get lastName() {
     return this.contactForm.get('lastName');
